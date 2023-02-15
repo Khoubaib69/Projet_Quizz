@@ -15,6 +15,8 @@ import fr.dawan.quizzapp.repository.UserRepository;
 public class UserService implements IUserService{
 @Autowired
 private UserRepository uRepository;
+
+
 	@Override
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
@@ -24,7 +26,7 @@ private UserRepository uRepository;
 	@Override
 	public Users createUser(Users user) {
 		// TODO Auto-generated method stub
-		return null;
+		return uRepository.save(user);
 	}
 
 	@Override
@@ -43,18 +45,22 @@ private UserRepository uRepository;
 	@Override
 	public Users findUserById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return uRepository.findUserById(id);
 	}
 
 	@Override
 	public void deleteUserById(Long id) {
-		// TODO Auto-generated method stub
+		 uRepository.deleteById(id);
 		
 	}
 
 	@Override
-	public Users updateUserById(Users user) {
-		// TODO Auto-generated method stub
+	public Users updateUserById(Users user, long id) {
+		//Users user =findUserById(id);
+		if (user!= null) {
+			user.setUserId(id);
+			return uRepository.saveAndFlush(user);
+		}
 		return null;
 	}
 	

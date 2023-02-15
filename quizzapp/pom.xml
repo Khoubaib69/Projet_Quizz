@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.8</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.dawan</groupId>
 	<artifactId>quizzapp</artifactId>
@@ -21,14 +21,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-	
-
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -46,13 +42,12 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-    		<groupId>org.projectlombok</groupId>
-    		<artifactId>lombok</artifactId>
-    		<scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
-
+	
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -61,5 +56,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
