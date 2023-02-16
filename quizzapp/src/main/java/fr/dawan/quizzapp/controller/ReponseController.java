@@ -13,44 +13,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.dawan.quizzapp.entities.Quizz;
-import fr.dawan.quizzapp.service.IQuizzService;
-
-
+import fr.dawan.quizzapp.entities.Reponse;
+import fr.dawan.quizzapp.service.IReponseService;
 
 @RestController
-@RequestMapping("/api/quizz")
-public class QuizzController {
+@RequestMapping("/api/reponse")
+public class ReponseController {
 	@Autowired 
-	private IQuizzService service;
+	private IReponseService service;
 	@GetMapping(produces="application/json")
-	public List<Quizz> findAll(){
+	public List<Reponse> findAll(){
 	return service.findAll();
 	}
 	
 	@GetMapping(value = "/{id:[0-9]+}", produces ="application/json")
 	
-	public Quizz findQuizzById(@PathVariable long id)   {
+	public Reponse findQuizzById(@PathVariable long id)   {
 		
 	return service.findById(id);
 	}
 	
 	@PostMapping(produces ="application/json", consumes ="application/json")
-	 public Quizz createQuizz (@RequestBody Quizz quizz) {
-		 return service.createQuizz(quizz);
+	 public Reponse createReponse (@RequestBody Reponse reponse) {
+		 return service.createReponse(reponse);
 	 }
 	
  	@DeleteMapping(value ="/delete/{id:[0-9]+}", produces = MediaType.TEXT_PLAIN_VALUE)
- 	public void deleteQuizzById(@PathVariable long id)   {
+ 	public void deleteReponseById(@PathVariable long id)   {
 		
-		 service.deleteQuizzById(id);
+		 service.deleteReponseById(id);
  		}
  	 @PutMapping( value ="/update/{id:[0-9]+}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	  public void updateQuizz(@RequestBody Quizz quizz, @PathVariable long id)
+	  public void updateQuizz(@RequestBody Reponse reponse, @PathVariable long id)
 	  {
-		  service.updateQuizzById(quizz,id);
+		  service.updateReponseById(reponse,id);
 		  //service.createUser(user);
 	  }
+
 }
-
-
