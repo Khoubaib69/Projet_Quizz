@@ -1,6 +1,7 @@
 package fr.dawan.quizzapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -30,8 +31,11 @@ public class CategorieService implements ICategorieService {
 
 	@Override
 	public Categorie findById(Long id) {
-		// TODO Auto-generated method stub
-		return cRepository.findById(id).get();
+		Optional <Categorie> c = cRepository.findById(id);
+		if(c.isPresent()) {
+			return c.get();
+		}
+		return null;
 	}
 
 	@Override

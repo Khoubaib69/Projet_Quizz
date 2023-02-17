@@ -1,6 +1,7 @@
 package fr.dawan.quizzapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -29,8 +30,12 @@ private IReponseRepository rRepository;
 
 	@Override
 	public Reponse findById(Long id) {
-		// TODO Auto-generated method stub
-		return rRepository.findById(id).get();
+		Optional <Reponse> r = rRepository.findById(id);
+		if ( r.isPresent())
+		{ return (r.get());}
+		
+		
+		return null;
 	}
 
 	@Override

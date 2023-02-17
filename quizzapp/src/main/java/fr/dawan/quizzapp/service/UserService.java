@@ -1,6 +1,7 @@
 package fr.dawan.quizzapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -44,8 +45,11 @@ private UserRepository uRepository;
 
 	@Override
 	public Users findUserById(Long id) {
-		// TODO Auto-generated method stub
-		return uRepository.findUserById(id);
+		Optional<Users> user = uRepository.findById(id);
+		if (user.isPresent())
+		{return user.get();}
+		
+		return null;
 	}
 
 	@Override

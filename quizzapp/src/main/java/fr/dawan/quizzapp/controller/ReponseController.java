@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.quizzapp.entities.Reponse;
 import fr.dawan.quizzapp.service.IReponseService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/reponse")
 public class ReponseController {
@@ -28,9 +30,13 @@ public class ReponseController {
 	
 	@GetMapping(value = "/{id:[0-9]+}", produces ="application/json")
 	
-	public Reponse findQuizzById(@PathVariable long id)   {
+	public ResponseEntity<Reponse> findReponseById(@PathVariable long id)   {
+		Reponse r= service.findById(id);
+		if (r!=null) {
+			return ResponseEntity.ok(r);
+		}
+		return ResponseEntity.notFound().build();
 		
-	return service.findById(id);
 	}
 	
 	@PostMapping(produces ="application/json", consumes ="application/json")
@@ -39,9 +45,14 @@ public class ReponseController {
 	 }
 	
  	@DeleteMapping(value ="/delete/{id:[0-9]+}", produces = MediaType.TEXT_PLAIN_VALUE)
- 	public void deleteReponseById(@PathVariable long id)   {
+ 	public ResponseEntity<String> deleteReponseById(@PathVariable long id)   {
 		
-		 service.deleteReponseById(id);
+		 try {
+			service.deleteReponseById(id);
+			return ResponseEntity.ok("Reponse supprimée");
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
  		}
  	 @PutMapping( value ="/update/{id:[0-9]+}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	  public void updateQuizz(@RequestBody Reponse reponse, @PathVariable long id)

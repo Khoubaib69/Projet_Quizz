@@ -1,6 +1,7 @@
 package fr.dawan.quizzapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -30,8 +31,11 @@ public class QuizzTestService  implements IQuizzTestService{
 
 	@Override
 	public QuizzTest findById(Long id) {
-		// TODO Auto-generated method stub
-		return qtRepository.findById(id).get();
+	Optional <QuizzTest> q = qtRepository.findById(id);
+		if (q.isPresent())
+		{ return q.get();}
+		
+		return null;
 	}
 
 	@Override
